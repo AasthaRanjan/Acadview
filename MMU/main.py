@@ -1,11 +1,11 @@
-from spy_details import spy_name , spy_salutation , spy_age , spy_ratings
+from spy_details import spy
 import start_chat
 print "Let's get started!"
-question = "continue as " + spy_salutation + " " + spy_name + ": (Y/N)"
+question = "continue as " + spy.spy_salutation + " " + spy.spy_name + ":(Y/N)"
 existing = raw_input(question)
 # validating user input
 if existing == "Y" or existing == "y":
-   start_chat.start_chat(spy_name, spy_age, spy_ratings)
+   start_chat.start_chat(spy.spy_name,spy.spy_age, spy.spy_ratings)
 elif(existing == "N" or existing == "n"):
     spy_name = raw_input("provide your name here SPY :")
     if len(spy_name)>0:

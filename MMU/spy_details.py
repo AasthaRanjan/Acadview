@@ -1,5 +1,8 @@
-spy_name = 'Bond'
-spy_salutation = 'Mr.'
-spy_age = 21
-spy_ratings = 4.7
+
+spy = {
+'spy_name' : "AASTHA RANJAN",
+"spy_salutation" : "Ms.",
+'spy_age': 21,
+'spy_rating': 4.5
+}
 
