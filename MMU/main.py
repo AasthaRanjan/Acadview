@@ -37,7 +37,6 @@ elif(existing == "N" or existing == "n"):
 
     else:
         print "You are not a valid user"
-
     spy_name = spy_salutation + " " + spy_name
     print  " WLECOME " + spy_name + " GLad to have you back with us!! "
     print " Alright " + spy_name + " I'd like know more about you "
@@ -45,4 +44,3 @@ elif(existing == "N" or existing == "n"):
     print "A SPY needs to have valid name.Try again."
 else:
     print "WRONG CHOICE"
-
