@@ -1,8 +1,10 @@
-
+#details of default user
 spy = {
-'spy_name' : "AASTHA RANJAN",
-"spy_salutation" : "Ms.",
-'spy_age': 21,
-'spy_rating': 4.5
+'name' : 'Bond',
+'salutation' : 'Ms.',
+'age': 21,
+'rating': 4.5,
+'is_online' : True
 }
+
 

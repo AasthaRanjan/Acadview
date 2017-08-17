@@ -17,7 +17,6 @@ def add_status(current_status_message):
          item_position = 1
 
          for message in STATUS_MESSAGES:
-
              print item_position + " . " + message
              item_position = item_position + 1
          message_selection = int(raw_input("\nChoose from the above message "))

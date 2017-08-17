@@ -1,22 +1,34 @@
+
+# import statements.
+from globale import friends
+
+# add new friends.
 def add_friend():
-    friends_name =[]
-    friends_age =[]
-    friends_rating = []
-    friends_is_online =[]
 
-    new_name = raw_input("Please add your friend's name: ")
-    new_salutation = raw_input("Are they Mr. or Ms.: ")
-    new_name = new_name + " " + new_salutation
-    new_age = raw_input("Age: ")
-    new_rating = raw_input("Spy rating:")
+    new_friend = {
+        'name': '',
+        'salutation': '.',
+        'age': 0,
+        'rating': 0.0,
+        'is_online': False
+    }
+    new_friend['name']= raw_input("Please add your friend's name:")
+    new_friend['salutation'] = raw_input("Are they Mr. or Ms.: ")
+    #concatination
 
-    new_age = int(new_age)
-    new_rating = float(new_rating)
-    if len(new_name) > 0 :
+    new_friend['name'] = new_friend['name'] + " " + new_friend['salutation']
+
+    new_friend['age'] = int(raw_input("Age: "))
+
+    new_friend['ratings'] =float (raw_input("Spy rating:"))
+
+
+    if len(new_friend['name']) > 0 and new_friend['age'] > 12 and new_friend['age'] <50:
             #Add friend
-        friends_name.append(new_name)
-        friends_age.append(new_age)
-        friends_rating.append(new_rating)
-        friends_is_online.append(True)
+        friends.append(new_friend)
+        print 'Friend Added'
+
     else:
         print 'sorry! Invalid entry. we can\'t add spy with thw details you provided'
+     #returning total number of friend
+    return len(friends)
