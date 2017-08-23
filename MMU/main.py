@@ -15,7 +15,14 @@ elif existing.upper() == "N":
 
     if len(spy['name']) > 0:
         spy['salutation'] = raw_input("what should we call you? (Mr. or Ms.):")
-        spy['age'] = int(raw_input("Enter your age here:"))
+
+        while True:
+            try:
+             spy['age'] = int(raw_input("Enter your age here:"))
+             break
+            except ValueError:
+             print "Invalid agr. Try again"
+
 
         spy['name'] = spy['salutation'] + " " + spy['name']
 

@@ -1,4 +1,6 @@
 from steganography.steganography import Steganography
+
+from MMU.globale import friends
 from select_friend import select_friend
 from datetime import datetime
 
