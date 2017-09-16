@@ -1,3 +1,7 @@
+
+import start_chat
+import re
+
 from spy_details import spy
 from start_chat import start_chat
 
@@ -14,7 +18,9 @@ elif existing.upper() == "N":
     spy['name'] = raw_input("provide your name here :")
 
     if len(spy['name']) > 0:
-        spy['salutation'] = raw_input("what should we call you? (Mr. or Ms.):")
+        pattern = '^[a-zA-z]+$'
+        if re.match(pattern, spy["name"])is not None:
+            spy['salutation'] = raw_input("what should we call you? (Mr. or Ms.):")
 
         while True:
             try:
