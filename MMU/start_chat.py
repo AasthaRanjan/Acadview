@@ -4,9 +4,9 @@ from add_status import add_status
 from add_friend import add_friend
 from send_message import send_message
 from read_message import read_message
+from read_chat_history import read_chat_history
 from globale import friends
 import time
-import read_chat_history
 from colorama import Fore, init
 from globale import current_status_message
 
@@ -15,7 +15,7 @@ init()
 #start_chat() function definition
 def start_chat(name, age, rating, status):
         error_messgae = None #variable for storing error message
-        if not (age > 12 < 50):
+        if not (age > 12 and age < 50):
          #invalid age.
             error_message = "Invalid age. Provide valid age."
             print error_message
@@ -25,7 +25,15 @@ def start_chat(name, age, rating, status):
                            "Age: " + str(age) + "\n" \
                            "Rating: " + str(rating) + "\n" \
                            "Proud to have you "
-        print welcome_message
+
+         if rating > 4.0:
+             welcome_message = welcome_message + "you are excellent"
+         elif rating > 3.0:
+             welcome_message = welcome_message + "you are good"
+         else:
+             welcome_message = welcome_message + "you need to work on it"
+         print Fore.CYAN+welcome_message
+
 
         # displaying menu for user.
         show_menu = True
@@ -40,42 +48,29 @@ def start_chat(name, age, rating, status):
             result = int(raw_input(menu_choices))
 
             # validating users input
-            if (result == 1):
-                time.sleep(1)
-                current_status_message = add_status(current_status_message)
-                time.sleep(1)
+            if result == 1:
+                current_status_message = add_status()
                 print 'your status has been updated to :\n', current_status_message
 
-            elif (result == 2):
-                time.sleep(1)
+            elif result == 2:
                 number_of_friends = add_friend()
                 print 'You have %d friends' % (number_of_friends)
-                friend_list()
 
-            elif (result == 3):
-                time.sleep(1)
+            elif result == 3:
                 send_message()
 
-            elif (result == 4):
-                time.sleep(1)
+            elif result == 4:
                 read_message()
 
-            elif (result == 5):
-                time.sleep(1)
+            elif result == 5:
                 read_chat_history()
 
-            elif (result == 6):
+            elif result == 6:
                 show_menu = False
-                time.sleep(1)
                 print Fore.RED + " APPLICATION IS CLOSED NOW. "
             else:
-                print "wrong choice try again."
+                print Fore.RED+ "wrong choice try again."
 
-def friend_list():
-    position = 1
-    for i in friends:
-        print position, ". " + i.get_name()
-        position = position +1
 
 
 

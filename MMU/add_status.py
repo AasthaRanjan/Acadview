@@ -2,50 +2,60 @@
 from globale import STATUS_MESSAGES
 from colorama import init, Fore
 
+init()
+
 
 #updated status message
 updated_status_message = None
 
+def add_status():
+    choice = True
+    while choice:
 
-def add_status(current_status_message):
+        # Ask user to choose from older older messages.
+        default = raw_input("Do you want to select from older status (y/n)? ")
 
-    if current_status_message is not None:
-        print "your current status is " + current_status_message + "\n"
-    else:
-        print " provide some status "
+        if default.upper() == "N":
+            choice = False
+            #new status input
+            while True:
+                new_status_message = raw_input("What status message do you want to set? ")
 
+                #validating users input
+                if len(new_status_message)>0:
 
-    default = raw_input("Do you want to select from the older status (y/n)?")
+                    #adding new status message to the list
+                    STATUS_MESSAGES.append(new_status_message)
+                    updated_status_message = new_status_message
+                    print 'Your updated status message is: %s' % (updated_status_message)
+                    break
+                else:
+                    # logic
+                    print Fore.RED+" You did not provide any status message "
 
+        elif default.upper() == "Y":
+            # counter for serial number of messages.
+            choice = False
+            while True:
+                item_position = 1
 
-    if default.upper() == "N":
-        new_status_message = raw_input("what status message do u want to set")
+                                                         # print all older status messages.
+                for message in STATUS_MESSAGES:
+                    print str(item_position) +". "+ str(message)
+                    item_position = item_position + 1
 
-        #validating user's input
-        if len(new_status_message) > 0:
-            #adding new friend to the list
-            STATUS_MESSAGES.append(new_status_message)
-            updated_status_message = new_status_message
-            print "your updated status message is %s" % updated_status_message
+                # asking users choice.
+                message_selection = int(raw_input("Choose from the previous status: "))
+                if len(STATUS_MESSAGES) >= message_selection:
+                    updated_status_message = STATUS_MESSAGES[message_selection - 1]
+                    print 'Your updated status message is: %s' % (updated_status_message)
+                    break
+                else:
+                    # logic
+                    print Fore.RED+"Select a proper status"
+
         else:
-            print Fore.RED + " you did not provide any status message "
+            print Fore.RED+" Wrong choice.Please try again !!"
 
-    elif default.upper() == "Y":
-        #conter for serial number of message
-        item_position = 1
-
-        for message in STATUS_MESSAGES:
-            print str(item_position) + " . " + message
-            item_position = item_position + 1
-
-
-
-        message_selection = int(raw_input("\nChoose from the above message "))
-
-        #validating users' input
-        if len( STATUS_MESSAGES) >= message_selection:
-             updated_status_message =  STATUS_MESSAGES[message_selection - 1]
-             print "your updated message is: " + updated_status_message
-        else:
-            print Fore.RED + "Invalid choice. Try again. "
     return updated_status_message
+

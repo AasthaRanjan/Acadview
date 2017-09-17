@@ -1,23 +1,27 @@
 from select_friend import select_friend
 from globale import friends
-import spy_details
+from steganography.steganography import Steganography
 from colorama import init, Fore
-
-spydetails = spy_details
 init()
 
-
-
 def read_chat_history():
-    choice = select_friend()
-    if choice == "error":
-        print Fore.RED + " Wrong Choice " + Fore.RESET
+    # choose friend from the list
+    friend_choice = select_friend()
+    if friend_choice == -1:
+        print Fore.RED + "Wrong choice,List empty" + Fore.RESET
     else:
-        print (Fore.BLUE + " Message sent are shown in blue color \n " + Fore.GREEN + "Recived message are shown in green color :" + Fore.RESET)
-        choice = int(choice)
-        chats = friends[choice].get_chats()
-        for chat in chats:
-            if chat['send_by_me']:
-                print (Fore.RED + str(chat['time']) + " " + Fore.BLUE + spydetails.get_name() + " " + Fore.RESET + chat['message'])
-            else:
-                print (Fore.RED + str(chat['time']) + " " + Fore.GREEN + friends[choice].get_name() + " " + Fore.RESET + chat['message'])
+        print (Fore.BLUE + "Messages sent by you is shown in blue color \n" + Fore.GREEN + "Messages received and read by your friend is shown in green color:" + Fore.RESET)
+        spybob=friends[friend_choice]
+        spybob.avgChatWords()
+        #to check chat is empty or not
+        if len(spybob.chat)>0:
+            for chatobj in spybob.chat:
+                message=Steganography.decode(chatobj['message'])
+                sentby=chatobj['sentby']
+                time=str(chatobj['time'])
+                if sentby:
+                    print "Sent By Me: "+Fore.GREEN+message+"\n"+time
+                else:
+                    print "Received By Me:"+Fore.RED+message+"\n"+time
+        else:
+            print Fore.RED+"Presently no chat history"
